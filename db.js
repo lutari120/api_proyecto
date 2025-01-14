@@ -58,10 +58,92 @@ export function crearTarea(tarea){
     });
 }
 
+export function borrarTarea(id){
+    return new Promise(async (ok,ko) => {
+        let conexion = conectar();
 
+        try{
+
+            let {count} = await conexion`DELETE FROM lista WHERE id = ${id}`;
+
+            ok(count);
+
+        }catch(error){
+
+            ko({ error : "Error en la base de datos" });
+
+        }finally{
+
+            conexion.end();
+
+        }
+    });
+}
+
+export function editarTarea(id,texto){
+    return new Promise(async (ok,ko) => {
+        let conexion = conectar();
+
+        try{
+
+            let {count} = await conexion`UPDATE lista SET tarea = ${texto} WHERE id = ${id}`;
+
+            ok(count);
+
+        }catch(error){
+
+            ko({ error : "Error en la base datos" });
+
+        }finally{
+
+            conexion.end();
+
+        }
+    });
+}
+
+export function editarEstado(id){
+    return new Promise(async (ok,ko) => {
+        let conexion = conectar();
+
+        try{
+
+            let {count} = await conexion`UPDATE lista SET estado = NOT estado WHERE id = ${id}`;
+
+            ok(count);
+
+        }catch(error){
+
+            ko({ error : "Error en la base de datos" });
+
+        }finally{
+
+            conexion.end();
+
+        }
+    });
+}
+
+editarEstado(2)
+.then(x => console.log(x))
+.catch(x => console.log(x));
+
+/*editarTarea(2,"barrer")
+.then(x => console.log(x))
+.catch(x => console.log(x));
+*/
+
+/*
+borrarTarea(1)
+.then(x => console.log(x))
+.catch(x => console.log(x));
+*/
+
+/*
 crearTarea("Limpiar")
 .then(x => console.log(x))
 .catch(x => console.log(x));
+*/
 
 
 /*

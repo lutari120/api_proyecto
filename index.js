@@ -1,6 +1,6 @@
 import express from "express";
 import cors from "cors";
-import { leerTareas } from "./db.js";
+import { leerTareas,crearTarea } from "./db.js";
 
 const servidor = express();
 
