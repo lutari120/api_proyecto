@@ -124,9 +124,11 @@ export function editarEstado(id){
     });
 }
 
+/*
 editarEstado(2)
 .then(x => console.log(x))
 .catch(x => console.log(x));
+*/
 
 /*editarTarea(2,"barrer")
 .then(x => console.log(x))
